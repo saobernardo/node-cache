@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  redis:
+    image: "redis:alpine"
+    container_name: cache_sample
+    ports:
+      - '6379:6379'
+  db:
+    image: postgres:16.1
+    container_name: database_postgres_cache_sample
+    environment:
+      POSTGRES_DB: database
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+  adminer:
+    container_name: adminer_cache_sample
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
